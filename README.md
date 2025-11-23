@@ -1,36 +1,148 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# SwiftSprint Frontend
+
+A modern Jira-like kanban board application built with Next.js, TypeScript, and Tailwind CSS.
+
+## Features
+
+- **Authentication**: JWT-based login and registration
+- **Project Management**: Create, view, and delete projects
+- **Kanban Board**: Drag-and-drop task management
+- **Task Management**: Create, assign, and organize tasks
+- **User Management**: View all users in the system
+- **Modern UI**: Clean, responsive design with Tailwind CSS
+
+## Tech Stack
+
+- **Next.js 16** - React framework with App Router
+- **TypeScript** - Type safety
+- **Tailwind CSS 4** - Styling
+- **Axios** - HTTP client with JWT interceptors
+- **@dnd-kit** - Drag and drop functionality
+- **React Context** - State management
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+
+- Node.js 18+
+- npm or yarn
+- SwiftSprint backend running on `http://localhost:8080`
+
+### Installation
+
+1. Install dependencies:
+
+```bash
+npm install
+```
+
+2. Create `.env.local` file (already created):
+
+```env
+NEXT_PUBLIC_API_URL=http://localhost:8080/api
+```
+
+3. Run the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+4. Open [http://localhost:3000](http://localhost:3000)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Features Overview
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Authentication
 
-## Learn More
+- Register new users
+- Login with email/password
+- JWT token stored in localStorage
+- Auto-redirect on authentication
+- Logout functionality
 
-To learn more about Next.js, take a look at the following resources:
+### Projects
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Create projects with name, key, and description
+- View all your projects
+- Delete projects
+- Navigate to project boards
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Kanban Board
 
-## Deploy on Vercel
+- Drag and drop tasks between columns
+- Create custom columns
+- Delete columns
+- Real-time position updates
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Tasks
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Create tasks with title, description, priority, and assignee
+- Assign tasks to users
+- Set priority levels (Low, Medium, High, Urgent)
+- Delete tasks
+- Drag to reorder and move between columns
+
+### Users
+
+- View all registered users
+- See user roles and join dates
+
+## API Integration
+
+The app connects to the SwiftSprint backend API:
+
+- **Auth**: `/api/auth/login`, `/api/auth/register`
+- **Users**: `/api/users`, `/api/users/me`
+- **Projects**: `/api/projects`
+- **Columns**: `/api/projects/{id}/columns`
+- **Tasks**: `/api/projects/{id}/tasks`
+- **Tags** `/api/projects/{id}/tags`
+
+All authenticated requests include JWT token in Authorization header.
+
+## Development
+
+### Running in Development
+
+```bash
+npm run dev
+```
+
+### Building for Production
+
+```bash
+npm run build
+npm start
+```
+
+### Linting
+
+```bash
+npm run lint
+```
+
+## Usage
+
+1. **Register/Login**: Create an account or sign in
+2. **Create Project**: Click "New Project" and fill in details
+3. **Open Board**: Click "Open Board" on any project
+4. **Add Columns**: Click "+ Add Column" to create custom columns
+5. **Create Tasks**: Click "+ Add Task" in any column
+6. **Drag Tasks**: Click and drag tasks to reorder or move between columns
+7. **Assign Tasks**: Select assignee when creating tasks
+8. **Delete Items**: Click the ✕ button on projects, columns, or tasks
+9. **Add Tags**: Click "+ Add Tag" in any task to add tags
+10. **Remove Tags**: Click the ✕ button to remove tags
+
+## Notes
+
+- Make sure the backend is running before starting the frontend
+- Default backend URL is `http://localhost:8080/api`
+- JWT tokens expire after 24 hours (configurable in backend)
+- All data is persisted in PostgreSQL via the backend
+
+## Future Enhancements (WIP)
+
+- Search and filters
+- Dark mode
+- Mobile optimization
